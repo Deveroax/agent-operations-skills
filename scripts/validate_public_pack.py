@@ -9,6 +9,8 @@ import sys
 from urllib.parse import unquote, urlsplit
 
 EXPECTED = {
+    "record-reconstruction-workflows": ["macos", "linux", "windows"],
+    "developer-portfolio-auditing": ["macos", "linux", "windows"],
     "macos-service-maintenance": ["macos"],
     "social-content-candidate-operations": ["macos", "linux", "windows"],
     "local-messaging-gateway-operations": ["macos", "linux", "windows"],

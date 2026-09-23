@@ -196,6 +196,46 @@ class ValidatorTests(unittest.TestCase):
         (self.root / (name + '.md')).write_text(credit)
         self.assert_path_diagnostics([fake, name], 'private-marker', [name])
 
+    def test_five_intended_skills(self):
+        expected = {
+            'macos-service-maintenance', 'social-content-candidate-operations',
+            'local-messaging-gateway-operations', 'record-reconstruction-workflows',
+            'developer-portfolio-auditing',
+        }
+        self.assertEqual(set(v.EXPECTED), expected)
+        self.assertEqual(v.validate(self.root), [])
+
+    def test_missing_new_skills(self):
+        for name in ('record-reconstruction-workflows', 'developer-portfolio-auditing'):
+            with self.subTest(name=name):
+                p = self.root / 'skills' / name / 'SKILL.md'
+                original = p.read_text()
+                p.unlink()
+                self.assertIn({'file': 'skills/' + name + '/SKILL.md',
+                               'category': 'required-skill'}, v.validate(self.root))
+                p.write_text(original)
+
+    def test_misidentified_new_skills(self):
+        for name in ('record-reconstruction-workflows', 'developer-portfolio-auditing'):
+            with self.subTest(name=name):
+                p = self.root / 'skills' / name / 'SKILL.md'
+                original = p.read_text()
+                p.write_text(original.replace('name: ' + name, 'name: fictional-wrong-skill'))
+                self.assertIn({'file': 'skills/' + name + '/SKILL.md',
+                               'category': 'skill-identity'}, v.validate(self.root))
+                p.write_text(original)
+
+    def test_new_skill_platform_metadata(self):
+        for name in ('record-reconstruction-workflows', 'developer-portfolio-auditing'):
+            with self.subTest(name=name):
+                p = self.root / 'skills' / name / 'SKILL.md'
+                original = p.read_text()
+                p.write_text(original.replace('platforms: ["macos", "linux", "windows"]',
+                                              'platforms: ["macos"]'))
+                self.assertIn({'file': 'skills/' + name + '/SKILL.md',
+                               'category': 'platform-metadata'}, v.validate(self.root))
+                p.write_text(original)
+
     def test_clean_pack(self):
         self.assertEqual(v.validate(self.root), [])
 

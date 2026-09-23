@@ -2,9 +2,11 @@
 
 Deveroax — prepared with Hermes Agent assistance.
 
-The maintainer confirms that the three workflows—macos-service-maintenance, social-content-candidate-operations and local-messaging-gateway-operations—and their consulted supporting notes were developed locally with Hermes assistance.
+The maintainer confirms that all five workflows—macos-service-maintenance, social-content-candidate-operations, local-messaging-gateway-operations, record-reconstruction-workflows and developer-portfolio-auditing—and their consulted supporting notes were developed locally with Hermes assistance. Local origin is maintainer-confirmed, not independently recovered creation history or a claim of universal originality.
 
-The skills, documentation, synthetic examples, validator and tests are licensed under the [MIT License](LICENSE).
+All five skills, documentation, synthetic examples, validator and tests, including the additions and integration changes, are covered by the existing [MIT License](LICENSE).
+
+The examples and templates were assembled from the procedural sources, not copied from production records.
 
 ## Documentation consulted
 
