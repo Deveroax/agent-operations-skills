@@ -1,6 +1,40 @@
 # agent-operations-skills
 
-Five focused operating procedures, not an automation framework:
+Practical playbooks for agents and their operators: diagnose a service, review a
+draft, or verify a messaging bridge without mistaking a successful check for
+permission to act. Start with a fictional example, then use the checklist for your
+own bounded task. This is a documentation pack, not an automation framework.
+
+## When would I use this?
+
+Your agent appears to be running twice. Before stopping anything, identify which
+service is healthy, distinguish observation from a proposed change, and record
+what would prove recovery. The [duplicate-service example](skills/macos-service-maintenance/examples/duplicate-service.md)
+walks through that decision with fictional evidence; it does not touch your Mac.
+
+| Your task | Start with this fictional example | Boundary to preserve |
+| --- | --- | --- |
+| Maintain a Mac agent | [Duplicate service](skills/macos-service-maintenance/examples/duplicate-service.md) | Diagnosis is not approval to stop a service |
+| Review social drafts | [Feedback cases](skills/social-content-candidate-operations/examples/feedback-cases.md) | A promising draft is not permission to post |
+| Verify a message bridge | [Verification report](skills/local-messaging-gateway-operations/examples/verification-report.md) | Outbound delivery is not two-way integration |
+| Reconstruct project history | [History example](skills/record-reconstruction-workflows/examples/lantern-history.md) | Recoverable bytes are not authority to restore them |
+| Prepare public portfolio work | [Portfolio example](skills/developer-portfolio-auditing/examples/fictional-portfolio.md) | Useful material is not automatically publishable |
+
+## Five-minute start: validate, don't operate
+
+With Python 3.9+ installed, run from the pack root:
+
+```sh
+python3 -B scripts/validate_public_pack.py .
+python3 -B -m unittest discover -s tests -v
+```
+
+These commands validate the documents and exercise the validator with temporary
+fixtures. They do not run service maintenance, send messages, or publish drafts.
+Then read one example above and its linked procedure. No agent installation is
+required for this first pass; runtime compatibility remains untested.
+
+## The five procedures
 
 - [macOS service maintenance](skills/macos-service-maintenance/SKILL.md): diagnose duplicate services and crash loops without stopping the healthy survivor.
 - [Social candidate operations](skills/social-content-candidate-operations/SKILL.md): reconcile draft feedback without turning uncertainty into publication permission.
